@@ -1,20 +1,26 @@
 import { useState } from "react";
+import { Row, Col, Form, Button } from "react-bootstrap";
 
-// Creating a Signup Form
+
+// // Creating a Signup Form
 export const SignupView = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [birthday, setBirthday] = useState("");
+  const [values, setValues] = useState({
+    username: '',
+    password: '',
+    confirmPassword: '',
+    email: '',
+    birthday: '',
+  });
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const data = {
-      Username: username,
-      Password: password,
-      Email: email,
-      Birthday: birthday
+      Username: values.username,
+      Password: values.password,
+      ConfirmPassword: values.confirmPassword,
+      Email: values.email,
+      Birthday: values.birthday
     };
 
     fetch("https://maryna-myflix-app.herokuapp.com/users", {
@@ -33,46 +39,66 @@ export const SignupView = () => {
     });
   };
 
+  function handleInput(event) {
+    const newObj = { ...values, [event.target.name]: event.target.value }
+    setValues(newObj)
+  }
+
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-          minLength="3"
-        />
-      </label>
-      <label>
-        Password:
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Email:
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Birthday:
-        <input
-          type="date"
-          value={birthday}
-          onChange={(e) => setBirthday(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Submit</button>
-    </form>
+    <Row className="justify-content-md-center">
+      <Col md={8} lg={6} xl={5}>
+        <Form className="bg-light rounded-3 p-3 mb-5" onSubmit={handleSubmit}>
+          <h2>Registration</h2>
+          <Form.Group className="mb-3" controlId="SingUpFormUsername">
+            <Form.Label>Username:</Form.Label>
+            <Form.Control
+              type="text"
+              name="username"
+              onChange={handleInput}
+              minLength="3"
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formEmail">
+            <Form.Label>Email:</Form.Label>
+            <Form.Control
+              type="email"
+              name="email"
+              onChange={handleInput}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formDate">
+            <Form.Label>Birthday:</Form.Label>
+            <Form.Control
+              type="date"
+              name="birthday"
+              onChange={handleInput}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="SingUpFormPassword">
+            <Form.Label>Password:</Form.Label>
+            <Form.Control
+              type="password"
+              name="password"
+              onChange={handleInput}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="SingUpFormPassword2">
+            <Form.Label>Confirm password:</Form.Label>
+            <Form.Control
+              type="password"
+              name="confirmPassword"
+              onChange={handleInput}
+              required
+            />
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
+      </Col>
+    </Row>
   );
 };
