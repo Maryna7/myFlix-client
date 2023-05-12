@@ -1,30 +1,33 @@
+import { Row, Col } from "react-bootstrap";
+
 export const MovieView = ({ movie, onBackClick }) => {
   return (
-    <div>
-      <div>
-        <img
-          style={{
-            maxWidth: '200px'
-          }}
-          src={movie.image} />
-      </div>
-      <div>
-        <span>Title: </span>
-        <span>{movie.title}</span>
-      </div>
-      <div>
-        <span>Description: </span>
-        <span>{movie.description}</span>
-      </div>
-      <div>
-        <span>Genre: </span>
-        <span>{movie.genreName}</span>
-      </div>
-      <div>
-        <span>Director: </span>
-        <span>{movie.directorName}</span>
-      </div>
-      <button onClick={onBackClick}>Back</button>
-    </div>
+    <Row className="justify-content-center mb-5">
+      <Col className="bg-light rounded-3 p-3" xs={10} sm={8} md={6} lg={4} >
+        <div className="mb-3">
+          <img
+            src={movie.image}
+            className='w-100'
+          />
+        </div>
+        <div className="mb-1">
+          <span className="text-secondary">Title: </span>
+          <span className="fw-bold">{movie.title}</span>
+        </div>
+        <div className="mb-1">
+          <span className="text-secondary">Description: </span>
+          <span >{movie.description}</span>
+        </div>
+        <div className="mb-1">
+          <span className="text-secondary">Genre: </span>
+          <span className="fw-bold">{movie.genreName}</span>
+        </div>
+        <div className="mb-1">
+          <span className="text-secondary">Director: </span>
+          <span className="fw-bold">{movie.directorName}</span>
+        </div>
+        <button className="btn btn-primary" onClick={onBackClick}>Back</button>
+      </Col>
+    </Row>
   );
 };

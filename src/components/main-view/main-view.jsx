@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { MovieCard } from "../movie-card/movie-card";
+import { MovieCardList } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
+import { SimilarMovies } from "../similar-movie-view/similar-movie-view";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -38,60 +39,32 @@ export const MainView = () => {
       });
   }, [token]);
 
-  // Show a login form if the user isn't logged in
-  if (!user) {
-    return (
-      <>
-        <LoginView
-          onLoggedIn={(user, token) => {
-            setUser(user);
-            setToken(token);
-          }}
-        />
-        or
-        <SignupView />
-      </>);
-  }
-
-  // Show a selected movie and movies similar in genre below
-  if (selectedMovie) {
-    let similarMovies = movies.filter(movie => (selectedMovie.genreName === movie.genreName) && (movie != selectedMovie));
-    return (
-      <>
-        <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
-        <hr />
-        <h2>Similar Movies</h2>
-        {similarMovies.map((movie) => (
-          <MovieCard
-            key={movie.id}
-            movie={movie}
-            onMovieClick={(newSelectedMovie) => {
-              setSelectedMovie(newSelectedMovie);
+  return (
+    <>
+      {!user ? (
+        <>
+          <LoginView
+            onLoggedIn={(user, token) => {
+              setUser(user);
+              setToken(token);
             }}
           />
-        ))}
-      </>
-    );
-  }
-
-  if (movies.length === 0) {
-    return <div>The list is empty!</div>;
-  }
-
-  return (
-    // Returning the list of movies and the logout button if the user is logged in
-    <div>
-      <button onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</button>
-      {movies.map((movie) => (
-        <MovieCard
-          key={movie.id}
-          movie={movie}
-          onMovieClick={(newSelectedMovie) => {
-            setSelectedMovie(newSelectedMovie);
-          }}
-        />
-      ))}
-    </div>
+          <SignupView />
+        </>
+      ) : selectedMovie ? (
+        <>
+          <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
+          <SimilarMovies movieList={movies} selectedMovie={selectedMovie} onSelectedMovie={setSelectedMovie} />
+        </>
+      ) : (
+        <>
+          <div className="text-end">
+            <button className="btn btn-primary mb-3" onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</button>
+          </div>
+          <MovieCardList movieList={movies} onSelectedMovie={setSelectedMovie} />
+        </>
+      )
+      }
+    </>
   );
-
 };
