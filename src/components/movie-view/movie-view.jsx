@@ -1,33 +1,41 @@
-import { Row, Col } from "react-bootstrap";
+import { Col } from "react-bootstrap";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 
-export const MovieView = ({ movie, onBackClick }) => {
+export const MovieView = ({ movies }) => {
+  const { movieId } = useParams();
+
+  const movie = movies.find((m) => m.id === movieId);
+
   return (
-    <Row className="justify-content-center mb-5">
-      <Col className="bg-light rounded-3 p-3" xs={10} sm={8} md={6} lg={4} >
-        <div className="mb-3">
-          <img
-            src={movie.image}
-            className='w-100'
-          />
-        </div>
-        <div className="mb-1">
-          <span className="text-secondary">Title: </span>
-          <span className="fw-bold">{movie.title}</span>
-        </div>
-        <div className="mb-1">
-          <span className="text-secondary">Description: </span>
-          <span >{movie.description}</span>
-        </div>
-        <div className="mb-1">
-          <span className="text-secondary">Genre: </span>
-          <span className="fw-bold">{movie.genreName}</span>
-        </div>
-        <div className="mb-1">
-          <span className="text-secondary">Director: </span>
-          <span className="fw-bold">{movie.directorName}</span>
-        </div>
-        <button className="btn btn-primary" onClick={onBackClick}>Back</button>
-      </Col>
-    </Row>
+    // <Row className="justify-content-center mb-5">
+    <Col className="bg-light rounded-3 p-3" xs={10} sm={8} md={6} lg={4} >
+      <div className="mb-3">
+        <img
+          src={movie.image}
+          className='w-100'
+        />
+      </div>
+      <div className="mb-1">
+        <span className="text-secondary">Title: </span>
+        <span className="fw-bold">{movie.title}</span>
+      </div>
+      <div className="mb-1">
+        <span className="text-secondary">Description: </span>
+        <span >{movie.description}</span>
+      </div>
+      <div className="mb-1">
+        <span className="text-secondary">Genre: </span>
+        <span className="fw-bold">{movie.genreName}</span>
+      </div>
+      <div className="mb-1">
+        <span className="text-secondary">Director: </span>
+        <span className="fw-bold">{movie.directorName}</span>
+      </div>
+      <Link to={`/`}>
+        <button className="btn btn-primary">Back</button>
+      </Link>
+    </Col>
+    // </Row>
   );
 };

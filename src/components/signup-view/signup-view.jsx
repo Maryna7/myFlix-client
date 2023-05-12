@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Row, Col, Form, Button } from "react-bootstrap";
+import { Col, Form, Button } from "react-bootstrap";
 
 
 // // Creating a Signup Form
@@ -45,7 +45,7 @@ export const SignupView = () => {
   }
 
   return (
-    <Row className="justify-content-md-center">
+    // <Row className="justify-content-md-center">
       <Col md={8} lg={6} xl={5}>
         <Form className="bg-light rounded-3 p-3 mb-5" onSubmit={handleSubmit}>
           <h2>Registration</h2>
@@ -99,6 +99,6 @@ export const SignupView = () => {
           </Button>
         </Form>
       </Col>
-    </Row>
+    // </Row>
   );
 };

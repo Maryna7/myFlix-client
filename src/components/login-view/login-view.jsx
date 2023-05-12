@@ -39,7 +39,7 @@ export const LoginView = ({ onLoggedIn }) => {
   };
 
   return (
-    <Row className="justify-content-md-center">
+    // <Row className="justify-content-md-center">
       <Col md={8} lg={6} xl={5}>
         <Form className="bg-light rounded-3 p-3 mb-5" onSubmit={handleSubmit}>
           <h2>Login</h2>
@@ -67,6 +67,6 @@ export const LoginView = ({ onLoggedIn }) => {
           </Button>
         </Form>
       </Col>
-    </Row>
+    // </Row>
   );
 };

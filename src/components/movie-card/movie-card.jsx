@@ -1,28 +1,33 @@
 import PropTypes from "prop-types"; //import the PropTypes library
-import { Row, Col, Card } from "react-bootstrap";
+import { Col, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 // The MovieCard function component 
-export const MovieCardList = ({ movieList, onSelectedMovie }) => {
+export const MovieCardList = ({ movieList }) => {
   if (!movieList.length) {
     return <div>The list is empty!</div>
   }
   return (
-    <Row>
+    <>
       {movieList.map((movie) => (
         <Col className="mb-5" key={movie.id} xs={6} md={4} lg={3}>
-          <Card className="h-100" onClick={() => onSelectedMovie(movie)}>
-            <Card.Img variant="top" src={movie.image} />
+          <Card className="h-100">
+            <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
+              <Card.Img variant="top" src={movie.image} />
+            </Link>
             <Card.Body className="d-flex flex-column justify-content-between">
               <Card.Title>{movie.title}</Card.Title>
               <Card.Text>{movie.genreName}</Card.Text>
-              <button className="btn btn-primary" onClick={() => onSelectedMovie(movie)} variant="link">
-                Open
-              </button>
+              <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
+                <button className="btn btn-primary" variant="link">
+                  Open
+                </button>
+              </Link>
             </Card.Body>
           </Card>
         </Col>
       ))}
-    </Row>
+    </>
   );
 };
 
