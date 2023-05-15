@@ -1,9 +1,15 @@
 import { Col, Card } from "react-bootstrap";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 
 // The SimilarMovies function component, for displaying similar movies by genre
-export const SimilarMovies = ({ movieList, selectedMovie }) => {
+export const SimilarMovies = ({ movieList }) => {
 
-  let similarMovies = movieList.filter(movie => (selectedMovie.genreName === movie.genreName) && (movie !== selectedMovie));
+  const { movieId } = useParams();
+
+  const movie = movieList.find((m) => m.id === movieId);
+
+  let similarMovies = movieList.filter(m => (movie.genreName === m.genreName) && (movie !== m));
 
   if (similarMovies.length > 0) {
     return (

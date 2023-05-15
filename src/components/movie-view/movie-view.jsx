@@ -1,14 +1,18 @@
+// import { MovieCardList } from "../movie-card/movie-card";
 import { Col } from "react-bootstrap";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 
-export const MovieView = ({ movies }) => {
+export const MovieView = ({ movieList }) => {
+  
   const { movieId } = useParams();
 
-  const movie = movies.find((m) => m.id === movieId);
+  const movie = movieList.find((m) => m.id === movieId);
+
+  // let similarMovies = movies.filter(m => (m.genreName === movie.genreName) && (m.title !== movie.title));
+
 
   return (
-    // <Row className="justify-content-center mb-5">
     <Col className="bg-light rounded-3 p-3" xs={10} sm={8} md={6} lg={4} >
       <div className="mb-3">
         <img
@@ -36,6 +40,5 @@ export const MovieView = ({ movies }) => {
         <button className="btn btn-primary">Back</button>
       </Link>
     </Col>
-    // </Row>
   );
 };

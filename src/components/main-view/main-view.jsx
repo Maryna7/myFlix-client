@@ -83,8 +83,8 @@ export const MainView = () => {
                   <Navigate to="/login" replace />
                 ) : (
                   <>
-                    <MovieView movies={movies} />
-                    <SimilarMovies movieList={movies} selectedMovie={selectedMovie} />
+                    <MovieView movieList={movies} />
+                    <SimilarMovies movieList={movies} />
                   </>
                 )}
               </>
