@@ -3,6 +3,7 @@ import { MovieCardList } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
+import { ProfileView } from "../profile-view/profile-view";
 import { SimilarMovies } from "../similar-movie-view/similar-movie-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { Row } from "react-bootstrap";
@@ -14,6 +15,7 @@ export const MainView = () => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
   const [movies, setMovies] = useState([]);
+  const [favoriteMoviesId, setFavoriteMoviesId] = useState([]);
 
   // useEffect hook allows React to perform side effects in component e.g fetching data
   useEffect(() => {
@@ -43,7 +45,7 @@ export const MainView = () => {
 
   return (
     <BrowserRouter>
-      <NavigationBar />
+      <NavigationBar user={user} onLoggedOut={() => { setUser(null); setToken(null); localStorage.clear(); }} />
       <Row className="justify-content-center">
         <Routes>
           <Route
@@ -57,6 +59,7 @@ export const MainView = () => {
                     onLoggedIn={(user, token) => {
                       setUser(user);
                       setToken(token);
+                      setFavoriteMoviesId(user.FavoriteMovies);
                     }}
                   />
                 )}
@@ -76,6 +79,25 @@ export const MainView = () => {
             }
           />
           <Route
+            path="/profile"
+            element={
+              !user ? (
+                <Navigate to="/login" replace />
+              ) : (
+                <ProfileView
+                  user={user}
+                  token={token}
+                  movieList={movies}
+                  userFavoriteMoviesId={favoriteMoviesId}
+                  onWishlistUpdate={setFavoriteMoviesId}
+                  onLoggedOut={() => {
+                    setUser(null); setToken(null); localStorage.clear();
+                  }}
+                  onUserInfoUpdate={setUser} />
+              )
+            }
+          />
+          <Route
             path="/movies/:movieId"
             element={
               <>
@@ -83,8 +105,19 @@ export const MainView = () => {
                   <Navigate to="/login" replace />
                 ) : (
                   <>
-                    <MovieView movieList={movies} />
-                    <SimilarMovies movieList={movies} />
+                    <MovieView
+                      movieList={movies}
+                      username={user.Username}
+                      token={token}
+                      favoriteMovies={favoriteMoviesId}
+                      onWishlistUpdate={setFavoriteMoviesId}
+                    />
+                    <SimilarMovies
+                      movieList={movies}
+                      username={user.Username}
+                      token={token}
+                      favoriteMovies={favoriteMoviesId}
+                      onWishlistUpdate={setFavoriteMoviesId} />
                   </>
                 )}
               </>
@@ -97,44 +130,19 @@ export const MainView = () => {
                 {!user ? (
                   <Navigate to="/login" replace />
                 ) : (
-                  <>
-                    <div className="text-end">
-                      <button className="btn btn-primary mb-3" onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</button>
-                    </div>
-                    <MovieCardList movieList={movies} />
-                  </>
+                  <MovieCardList
+                    movieList={movies}
+                    username={user.Username}
+                    token={token}
+                    favoriteMovies={favoriteMoviesId}
+                    onWishlistUpdate={setFavoriteMoviesId}
+                  />
                 )}
               </>
             }
           />
         </Routes>
       </Row>
-      {/* <>
-        {!user ? (
-          <>
-            <LoginView
-              onLoggedIn={(user, token) => {
-                setUser(user);
-                setToken(token);
-              }}
-            />
-            <SignupView />
-          </>
-        ) : selectedMovie ? (
-          <>
-            <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
-            <SimilarMovies movieList={movies} selectedMovie={selectedMovie} onSelectedMovie={setSelectedMovie} />
-          </>
-        ) : (
-          <>
-            <div className="text-end">
-              <button className="btn btn-primary mb-3" onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</button>
-            </div>
-            <MovieCardList movieList={movies} onSelectedMovie={setSelectedMovie} />
-          </>
-        )
-        }
-      </> */}
     </BrowserRouter>
   );
 };
