@@ -5,7 +5,7 @@ import Container from "react-bootstrap/Container";
 
 const MyFlixApplication = () => {
   return (
-    <Container className="pt-4 pb-4">
+    <Container className="pb-4">
       <MainView />
     </Container>
   );

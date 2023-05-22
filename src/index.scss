@@ -1,4 +1,9 @@
 $primary: HotPink;
-$body-bg: SlateGray;
+$body-bg: #304d6a;
+
+#root .btn-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-hover-color: #fff;
+}
 
 @import '~bootstrap/scss/bootstrap.scss';
