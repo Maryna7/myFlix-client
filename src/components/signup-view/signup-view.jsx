@@ -12,7 +12,7 @@ export const SignupView = () => {
     birthday: '',
   });
 
-  const handleSubmit = (event) => {
+  const handleSingupSubmit = (event) => {
     event.preventDefault();
 
     const data = {
@@ -46,7 +46,7 @@ export const SignupView = () => {
 
   return (
     <Col md={8} lg={6} xl={5}>
-      <Form className="bg-light rounded-3 p-3 mb-5" onSubmit={handleSubmit}>
+      <Form className="bg-light rounded-3 p-3 mb-5" onSubmit={handleSingupSubmit}>
         <h2>Registration</h2>
         <Form.Group className="mb-3" controlId="SingUpFormUsername">
           <Form.Label>Username:</Form.Label>

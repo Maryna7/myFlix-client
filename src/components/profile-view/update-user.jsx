@@ -1,10 +1,10 @@
 import { Row, Col, Form, Button } from "react-bootstrap";
 
-export const UpdateUser = ({ handleSubmit, handleInput, deleteAccount, userInfoUpdate }) => {
+export const UpdateUser = ({ handleUserUpdateSubmit, handleInput, deleteAccount }) => {
   return (
     <Row className="justify-content-center">
       <Col md={8} lg={6} xl={5} className="rounded-3 border mb-4">
-        <Form className="bg-light rounded-3 p-3" onSubmit={handleSubmit}>
+        <Form className="bg-light rounded-3 p-3" onSubmit={handleUserUpdateSubmit}>
           <h2>Update my profile</h2>
           <Form.Group className="mb-3" controlId="UpdateFormUsername">
             <Form.Label>Username:</Form.Label>

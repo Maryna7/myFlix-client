@@ -46664,7 +46664,7 @@ const LoginView = ({ onLoggedIn  })=>{
     _s();
     const [username, setUsername] = (0, _react.useState)("");
     const [password, setPassword] = (0, _react.useState)("");
-    const handleSubmit = (event)=>{
+    const handleLoginSubmit = (event)=>{
         // this prevents the default behavior of the form which is to reload the entire page
         event.preventDefault();
         const data = {
@@ -46695,7 +46695,7 @@ const LoginView = ({ onLoggedIn  })=>{
         xl: 5,
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
             className: "bg-light rounded-3 p-3 mb-5",
-            onSubmit: handleSubmit,
+            onSubmit: handleLoginSubmit,
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                     children: "Login"
@@ -46812,7 +46812,7 @@ const SignupView = ()=>{
         email: "",
         birthday: ""
     });
-    const handleSubmit = (event)=>{
+    const handleSingupSubmit = (event)=>{
         event.preventDefault();
         const data = {
             Username: values.username,
@@ -46847,7 +46847,7 @@ const SignupView = ()=>{
         xl: 5,
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
             className: "bg-light rounded-3 p-3 mb-5",
-            onSubmit: handleSubmit,
+            onSubmit: handleSingupSubmit,
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                     children: "Registration"
@@ -47265,7 +47265,7 @@ const ProfileView = ({ user , token , movieList , onLoggedOut , userFavoriteMovi
         onUserInfoUpdate(user);
     };
     // The function component for updating a user data
-    const handleSubmit = (event)=>{
+    const handleUserUpdateSubmit = (event)=>{
         event.preventDefault();
         const data = {
             Username: values.username,
@@ -47329,9 +47329,8 @@ const ProfileView = ({ user , token , movieList , onLoggedOut , userFavoriteMovi
                 }, undefined),
                 isOpen ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _updateUser.UpdateUser), {
                     handleInput: handleInput,
-                    handleSubmit: handleSubmit,
-                    deleteAccount: deleteAccount,
-                    userInfoUpdate: userInfoUpdate
+                    handleUserUpdateSubmit: handleUserUpdateSubmit,
+                    deleteAccount: deleteAccount
                 }, void 0, false, {
                     fileName: "src/components/profile-view/profile-view.jsx",
                     lineNumber: 108,
@@ -47500,7 +47499,7 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "UpdateUser", ()=>UpdateUser);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _reactBootstrap = require("react-bootstrap");
-const UpdateUser = ({ handleSubmit , handleInput , deleteAccount , userInfoUpdate  })=>{
+const UpdateUser = ({ handleUserUpdateSubmit , handleInput , deleteAccount  })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
         className: "justify-content-center",
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
@@ -47511,7 +47510,7 @@ const UpdateUser = ({ handleSubmit , handleInput , deleteAccount , userInfoUpdat
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
                     className: "bg-light rounded-3 p-3",
-                    onSubmit: handleSubmit,
+                    onSubmit: handleUserUpdateSubmit,
                     children: [
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                             children: "Update my profile"

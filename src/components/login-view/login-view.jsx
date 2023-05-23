@@ -6,7 +6,7 @@ export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (event) => {
+  const handleLoginSubmit = (event) => {
     // this prevents the default behavior of the form which is to reload the entire page
     event.preventDefault();
 
@@ -40,7 +40,7 @@ export const LoginView = ({ onLoggedIn }) => {
 
   return (
     <Col md={8} lg={6} xl={5}>
-      <Form className="bg-light rounded-3 p-3 mb-5" onSubmit={handleSubmit}>
+      <Form className="bg-light rounded-3 p-3 mb-5" onSubmit={handleLoginSubmit}>
         <h2>Login</h2>
         <Form.Group className="mb-3" controlId="formUsername">
           <Form.Label>Username:</Form.Label>
