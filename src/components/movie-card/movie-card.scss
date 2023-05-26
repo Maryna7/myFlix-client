@@ -3,6 +3,10 @@
   transition: opacity 0.5s;
 }
 
+.heart-button:active {
+  border: none;
+}
+
 .heart-img {
   max-width: 30px;
 }

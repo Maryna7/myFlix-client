@@ -7,7 +7,6 @@ export const LoginView = ({ onLoggedIn }) => {
   const [password, setPassword] = useState("");
 
   const handleLoginSubmit = (event) => {
-    // this prevents the default behavior of the form which is to reload the entire page
     event.preventDefault();
 
     const data = {
@@ -23,7 +22,6 @@ export const LoginView = ({ onLoggedIn }) => {
       body: JSON.stringify(data)
     }).then((response) => response.json())
       .then((data) => {
-        console.log("Login response: ", data);
         // Persisting a Login Session
         if (data.user) {
           localStorage.setItem("user", JSON.stringify(data.user));
