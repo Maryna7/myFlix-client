@@ -2,8 +2,30 @@ $primary: HotPink;
 $body-bg: #304d6a;
 
 #root .btn-primary {
-  --bs-btn-color: #fff;
-  --bs-btn-hover-color: #fff;
+  --bs-btn-color: White;
+  --bs-btn-hover-color: White;
+  --bs-btn-active-color: White;
+  --bs-btn-disabled-color: White;
+}
+
+#root .form-control {
+  background-color: White;
+}
+
+#root .form-control:focus {
+  background-color: White;
+}
+
+#root .btn-outline-success {
+  --bs-btn-color: HotPink;
+  --bs-btn-border-color: HotPink;
+  --bs-btn-hover-color: White;
+  --bs-btn-hover-bg: HotPink;
+  --bs-btn-hover-border-color: HotPink;
+  --bs-btn-active-bg: rgba(255, 105, 180, 0.8);
+  --bs-btn-active-border-color: HotPink;
+  --bs-btn-disabled-border-color: HotPink;
+
 }
 
 @import '~bootstrap/scss/bootstrap.scss';

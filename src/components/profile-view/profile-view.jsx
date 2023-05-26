@@ -42,7 +42,7 @@ export const ProfileView = ({
   }
 
   // The function component for updating a user data
-  const handleSubmit = (event) => {
+  const handleUserUpdateSubmit = (event) => {
     event.preventDefault();
 
     const data = {
@@ -107,9 +107,9 @@ export const ProfileView = ({
         {isOpen ? (
           < UpdateUser
             handleInput={handleInput}
-            handleSubmit={handleSubmit}
+            handleUserUpdateSubmit={handleUserUpdateSubmit}
             deleteAccount={deleteAccount}
-            userInfoUpdate={userInfoUpdate} />
+          />
         ) : null}
 
 

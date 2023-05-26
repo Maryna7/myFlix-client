@@ -14,6 +14,7 @@ export const MovieCardList = ({ movieList, username, token, favoriteMovies, onWi
     return <div>The list is empty!</div>
   }
 
+
   return (
     <>
       {movieList.map((movie) => {
@@ -33,7 +34,14 @@ export const MovieCardList = ({ movieList, username, token, favoriteMovies, onWi
         // Adding the appropriate icon into the button depending on whether the movie is in the wishlist 
         const wishListIcon = isMovieInWishList ? HeartIconFull : HeartIcon;
 
-
+        // //Condition under which the list of films is filtered by their titles
+        // if (
+        //   movie.title.toLowerCase().indexOf(
+        //     inputValue.toLowerCase()
+        //   ) === -1
+        // ) {
+        //   return;
+        // }
 
         return (
           <Col className="mb-5" key={movie.id} xs={6} md={4} lg={3}>

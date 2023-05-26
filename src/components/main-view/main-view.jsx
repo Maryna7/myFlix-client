@@ -7,7 +7,7 @@ import { ProfileView } from "../profile-view/profile-view";
 import { SimilarMovies } from "../similar-movie-view/similar-movie-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { Row } from "react-bootstrap";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -16,6 +16,8 @@ export const MainView = () => {
   const [token, setToken] = useState(null);
   const [movies, setMovies] = useState([]);
   const [favoriteMoviesId, setFavoriteMoviesId] = useState([]);
+  const [filteredMovies, setFilteredMovies] = useState([]);
+
 
   // useEffect hook allows React to perform side effects in component e.g fetching data
   useEffect(() => {
@@ -43,9 +45,25 @@ export const MainView = () => {
       });
   }, [token]);
 
+
+  //Navigating to the main page by pressing 'Search' in the navigation
+  const navigate = useNavigate();
+  const onNavSearch = (searchText) => {
+
+    navigate("/");
+    const draft = movies.filter(movie => movie.title.toLowerCase().includes(searchText.toLowerCase()));
+    setFilteredMovies(draft);
+  }
+
   return (
-    <BrowserRouter>
-      <NavigationBar user={user} onLoggedOut={() => { setUser(null); setToken(null); localStorage.clear(); }} />
+    <>
+      <NavigationBar
+        user={user}
+        onLoggedOut={() => {
+          setUser(null); setToken(null); localStorage.clear();
+        }}
+        onNavSearch={onNavSearch}
+      />
       <Row className="justify-content-center">
         <Routes>
           <Route
@@ -131,7 +149,7 @@ export const MainView = () => {
                   <Navigate to="/login" replace />
                 ) : (
                   <MovieCardList
-                    movieList={movies}
+                    movieList={filteredMovies.length ? filteredMovies : movies}
                     username={user.Username}
                     token={token}
                     favoriteMovies={favoriteMoviesId}
@@ -143,6 +161,6 @@ export const MainView = () => {
           />
         </Routes>
       </Row>
-    </BrowserRouter>
+    </>
   );
 };

@@ -1,6 +1,23 @@
 #root .btn-primary {
-  --bs-btn-color: #fff;
-  --bs-btn-hover-color: #fff;
+  --bs-btn-color: White;
+  --bs-btn-hover-color: White;
+  --bs-btn-active-color: White;
+  --bs-btn-disabled-color: White;
+}
+
+#root .form-control, #root .form-control:focus {
+  background-color: #fff;
+}
+
+#root .btn-outline-success {
+  --bs-btn-color: HotPink;
+  --bs-btn-border-color: HotPink;
+  --bs-btn-hover-color: White;
+  --bs-btn-hover-bg: HotPink;
+  --bs-btn-hover-border-color: HotPink;
+  --bs-btn-active-bg: #ff69b4cc;
+  --bs-btn-active-border-color: HotPink;
+  --bs-btn-disabled-border-color: HotPink;
 }
 
 :root {
@@ -12014,6 +12031,10 @@ textarea.form-control-lg {
 .heart-button:hover {
   opacity: .7;
   transition: opacity .5s;
+}
+
+.heart-button:active {
+  border: none;
 }
 
 .heart-img {
