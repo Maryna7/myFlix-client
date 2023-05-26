@@ -1,6 +1,6 @@
 import { Navbar, Container, Nav, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Logo from "../../img/logo.svg"
+import Logo from "../../img/logo.png"
 import "./navigation.scss";
 import { useState } from "react";
 
