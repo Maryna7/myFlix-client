@@ -50,3 +50,6 @@ HTML, SCSS, React, Bootstrap, Parcel, React Redux.
 - Displays favorite movies
 - Allows users to remove a movie from their list of favorites
 - Allows existing users to deregister
+
+## Link to hosted project:
+Click [here](https://marynas-myflix.netlify.app/) to go to my myFlix-app. 
